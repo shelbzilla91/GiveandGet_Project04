@@ -1,12 +1,17 @@
 from django.db import models
 
-# Create your models here.
+class User(models.Model):
+    username = models.CharField(max_length=100)
+    photo_url = models.TextField()
 
-    # add this
-    class Donations(models.Model):
-      title = models.CharField(max_length=120)
-      description = models.TextField()
-      completed = models.BooleanField(default=False)
+class Centers(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    photo_url = models.TextField()
 
-      def _str_(self):
-        return self.title
+class List(models.Model):
+    User = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lists')
+    Centers = models.ForeignKey(Centers, on_delete=models.CASCADE, related_name='lists')
+
+
+

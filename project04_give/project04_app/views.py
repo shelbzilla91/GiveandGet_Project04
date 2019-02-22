@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import User, List
 
-# Create your views here.
-def helloIndex(req):
-    return HttpResponse("ello!")
+def User_index(request):
+    context = {'users': User.objects.all()}
+    return render(request, 'admin/User_index.html', context)
+
 
